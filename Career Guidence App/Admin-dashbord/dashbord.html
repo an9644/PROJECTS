@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-teal-100 bg-cover " style="background-image: url('./images/1.png')">
+
+    <!-- Sidebar -->
+    <div class="w-64  bg-transparent backdrop-blur-sm p-4 h-screen fixed top-0 left-0 shadow-md text-center">
+        <ul>
+            <li class=""><div class="grid grid-cols-2">
+                <div class="relative"> <img  src="./images/logo.png"   alt="logo"  class="object-cover h-full w-24 h-24 rounded-xl m-2"  />  </div>
+                <div class="mt-7 font-bold text-fuchsia-800 text-3xl">Career Path..</div>
+            </div></li>
+            <li class="ml-12"> <div class="flex  ">
+                <img class=" rounded-full border border-7 " src="./images/admin.webp"   width="60" height="60">
+                        <p class="m-3"><b>Admin</b> 
+                </div></li>
+            <li class="py-2 text-fuchsia-800"><a href="dashbord.html" class="text-xl font-medium text-gray-700">Dashboard</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="user.html" class="text-xl font-medium text-gray-700">Users</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adpodcast.html" class="text-xl font-medium text-gray-700"> Podcasts</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adjobs.html" class="text-xl font-medium text-gray-700"> Jobs</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcouncil.html" class="text-xl font-medium text-gray-700"> Councillors</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700"> Course</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-4 mt-12">
+        <div class="flex justify-between items-center mb-4">
+            <p class="text-xl font-bold text-fuchsia-800">Dashboard</p>
+            
+        </div>
+
+        <!-- Cards -->
+        <div class="grid grid-cols-2 gap-4">
+            <div class="bg-teal-100 w-auto h-64  p-4 rounded-xl shadow-lg shadow-fuchsia-500">
+                <p class="text-2xl text-right font-bold">Users</p>
+            </div>
+            <div class="bg-teal-100 w-auto h-64  p-4 rounded-xl shadow-lg shadow-fuchsia-500">
+                <p class="text-2xl text-right font-bold">Councillors</p>
+            </div>
+            <div class="bg-teal-100 w-auto h-64  p-4 rounded-xl shadow-lg shadow-fuchsia-500">
+                <p class="text-2xl text-right font-bold">Courses</p>
+            </div>
+            <div class="bg-teal-100 w-auto h-64  p-4 rounded-xl shadow-lg shadow-fuchsia-500">
+                <p class="text-2xl text-right font-bold">Contacts</p>
+            </div>
+        </div>
+
+      
+    
+    </div>
+</body>
+</html>

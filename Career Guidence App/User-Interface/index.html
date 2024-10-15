@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="flex items-center justify-center h-screen">
+        <div class="text-center">
+            <h1 class="text-3xl mb-4">Welcome to [Your Website Name]</h1>
+            <p class="text-lg mb-8">We're excited to have you here!</p>
+            <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" id="get-started-btn">Get Started</button>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('get-started-btn').addEventListener('click', function() {
+            window.location.href = 'home.html';
+        });
+    </script>
+</body>
+</html>

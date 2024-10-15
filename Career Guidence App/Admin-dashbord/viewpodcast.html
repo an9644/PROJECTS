@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Podcasts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-teal-100 bg-cover " style="background-image: url('./images/1.png')">
+
+    <!-- Sidebar -->
+    <div class="w-64  bg-transparent backdrop-blur-sm p-4 h-screen fixed top-0 left-0 shadow-md text-center">
+        <ul>
+            <li class=""><div class="grid grid-cols-2">
+                <div class="relative"> <img  src="./images/logo.png"   alt="logo"  class="object-cover h-full w-24 h-24 rounded-xl m-2"  />  </div>
+                <div class="mt-7 font-bold text-fuchsia-800 text-3xl">Career Path..</div>
+            </div></li>
+            <li class="ml-12"> <div class="flex ">
+                <img class=" rounded-full border border-7 " src="./images/admin.webp"   width="60" height="60">
+                        <p class="m-3"><b>Admin</b> 
+                </div></li>
+            <li class="py-2 text-fuchsia-800"><a href="dashbord.html" class="text-xl font-medium text-gray-700">Dashboard</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="user.html" class="text-xl font-medium text-gray-700">Users</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adpodcast.html" class="text-xl font-medium text-gray-700"> Podcasts</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adjobs.html" class="text-xl font-medium text-gray-700"> Jobs</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcouncil.html" class="text-xl font-medium text-gray-700"> Councillors</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700"> Course</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-4 mt-12">
+        <div class="flex justify-between items-center mb-4">
+            
+            <div class="grid grid-cols-2 gap-5 text-2xl text-fuchsia-800 text-center">
+
+               <button class="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <a href="adpodcast.html">Add Podcasts</a></button>
+               <button class="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <a href="viewpodcast.html">View Podcasts</a></button>
+            </div>
+            
+        </div>
+
+        <div class="mt-4 ">
+            <p class="text-2xl text-fuchsia-800 font-medium"> Jobs List</p>
+            <table class="w-full mt-2 table-auto ">
+                <thead>
+                    <tr class="border border-2 border-gray-400 text-left text-fuchsia-800 shadow-lg">
+                        <th class="text-xl font-medium">Date</th>
+                        <th class="text-xl font-medium">Councillor Name:</th>
+                        <th class="text-xl font-medium">Occupation</th>
+                        <th class="text-xl font-medium">Description</th>
+                        <th class="text-xl font-medium">Image</th>
+                        <th class="text-xl font-medium">Delete</th>
+                    </tr>
+                    <tr class="border border-2 border-gray-400 text-left text-fuchsia-700  shadow-lg">
+                        <td class="text-xl">2024-10-13</td>
+                        <td class="text-xl">job1</td>
+                        <td class="text-xl"> Career Guidance</td>
+                        <td class="text-xl">abc</td>
+                        <td class="text-xl"><img src="./images/4.jpeg" width="60" height="60" alt=" image"></td>
+                        <td class="text-xl"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20" height="20">
+                            <path fill="#BA68C8" d="M135.2 17.7L128 32 32 32C14.3 32 0 46.3 0 64S14.3 96 32 96l384 0c17.7 0 32-14.3 32-32s-14.3-32-32-32l-96 0-7.2-14.3C307.4 6.8 296.3 0 284.2 0L163.8 0c-12.1 0-23.2 6.8-28.6 17.7zM416 128L32 128 53.2 467c1.6 25.3 22.6 45 47.9 45l245.8 0c25.3 0 46.3-19.7 47.9-45L416 128z"/></svg></td>
+
+                    </tr>
+
+                </thead>
+                <tbody>
+                   
+                </tbody>
+            </table>
+        
+    </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Councillors</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-teal-100 bg-cover " style="background-image: url('./images/1.png')">
+
+    <!-- Sidebar -->
+    <div class="w-64  bg-transparent backdrop-blur-sm p-4 h-screen fixed top-0 left-0 shadow-md text-center">
+        <ul>
+            <li class=""><div class="grid grid-cols-2">
+                <div class="relative"> <img  src="./images/logo.png"   alt="logo"  class="object-cover h-full w-24 h-24 rounded-xl m-2"  />  </div>
+                <div class="mt-7 font-bold text-fuchsia-800 text-3xl">Career Path..</div>
+            </div></li>
+            <li class="ml-12 "> <div class="flex ">
+                <img class=" rounded-full border border-7 " src="./images/admin.webp"   width="60" height="60">
+                        <p class="m-3 text-xl"><b>Admin</b> 
+                </div></li>
+            <li class="py-2 text-fuchsia-800"><a href="dashbord.html" class="text-xl font-medium text-gray-700">Dashboard</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="user.html" class="text-xl font-medium text-gray-700">Users</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adpodcast.html" class="text-xl font-medium text-gray-700"> Podcasts</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adjobs.html" class="text-xl font-medium text-gray-700"> Jobs</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcouncil.html" class="text-xl font-medium text-gray-700"> Councillors</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700"> Course</a></li>
+            <li class="py-2 text-fuchsia-800"><a href="adcourse.html" class="text-xl font-medium text-gray-700">Log Out</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="ml-64 p-4 mt-12">
+        <div class="flex justify-between items-center mb-4">
+            
+            <div class="grid grid-cols-2 gap-5 text-2xl text-fuchsia-800 text-center">
+
+               <button class="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-xl font-medium"> <a href="adcouncil.html">Add Councillor</a></button>
+               <button class="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-xl font-medium"> <a href="viewconcil.html">View Councillor</a></button>
+            </div>
+            
+        </div>
+
+        <div class="bg-transparent backdrop-blur-md h-auto max-w-md w-full mx-4 rounded-xl  shadow shadow-2xl ml-[500px]  p-8 border border-gray-200">
+
+            <p class="text-3xl font-bold text-center mb-4 text-fuchsia-900">Add Councillors</p>
+            <form>
+                <div class="mb-4">
+                    <label class=" text-gray-600" for="username" >Councillors Name:</label>
+                    <input type="text" id="username" class="mt-3 bg-gray-100 w-full p-2 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label class="block text-gray-600" for="ocuupation" >Occupation:</label>
+                    <input type="text" id="ocuupation" class="mt-3 bg-gray-100 w-full p-2 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label class=" text-gray-600" for="description">Description :</label>
+                    <input type="text" id="description"  class="mt-3 bg-gray-100 w-full p-2 rounded-lg" required>
+                </div>
+                <div class="mb-4">
+                    <label  class=" text-gray-600" for="">Rating Of the Course :</label>
+                    <input type="number" min="0" max="5" id="" class="mt-3 bg-gray-100 w-full p-2 rounded-lg">
+                </div>  
+                <div class="mb-4">
+                    <label  class=" text-gray-600" for="">Upload Image :</label>
+                    <input type="file"  id="" class="mt-3 bg-gray-100 w-full p-2 rounded-lg">
+                </div>              
+                
+                <input type="submit" value="Add Councillors" class="mt-2 bg-fuchsia-600 text-black ml-28 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

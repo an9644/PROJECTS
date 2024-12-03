@@ -70,7 +70,7 @@ const Councilloradmin = () => {
                     <input type="number" min="0" max="5" id="" className="mt-3 bg-gray-100 w-full p-2 rounded-lg"
                     value={Rating} onChange={(e)=>setRating(e.target.value)} />
                 </div>                           
-                <button type='submit' className="mt-2 bg-fuchsia-600 text-black ml-32 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl">Add </button>
+                <button type='submit' className="mt-2 bg-fuchsia-600 text-black ml-32 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl">Add Councillor </button>
 
                 
             </form>

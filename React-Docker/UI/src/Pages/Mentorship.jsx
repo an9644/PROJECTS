@@ -4,6 +4,7 @@ import Menticons from '../components/User/Menticons'
 import ML2 from '../layouts/ML2'
 import bg3 from '../assets/Images/bg3.jpeg'
 import jpeg3 from '../assets/Images/3.jpeg'
+import { Link } from 'react-router-dom'
 
 const Mentorship = () => {
   const [Councillors,setCouncillors]=useState([])
@@ -44,7 +45,7 @@ const Mentorship = () => {
         <div className="ml-7">
         <p className=" text-fuchsia-700 text-4xl font-bold py-2  text-black ">Are You Confused  About Your Future??</p>
             <p className="text-fuchsia-700 text-xl py-2  text-black">Book your live interaction session with out experts..........</p>
-            <button className="bg-fuchsia-200 text-fuchsia-700 hover:bg-fuchsia-700 hover:text-white font-bold py-2 px-8  rounded"><a href="./booking.html">Book my session</a></button>
+            <button className="bg-fuchsia-200 text-fuchsia-700 hover:bg-fuchsia-700 hover:text-white font-bold py-2 px-8  rounded"><Link to="/booksession">Book my session</Link></button>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -59,31 +60,13 @@ const Mentorship = () => {
                         <p id="professional" className=" text-fuchsia-900 text-lg ml-[130px]"> {Councillor.occupation} </p>
                         <p id="description" className=" text-gray-500 text-lg text-center mt-1"> {Councillor.description}  </p>
                         <p id="rating" className=" text-gray-500 text-lg text-center mt-1"> {Councillor.rating}  </p>
-                    <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white">Entroll Now </button></div>
+                    <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white"><Link to='/booksession'>Entroll Now</Link> </button></div>
                </div>
                 )
                 })):(
                   <div className="text-center text-3xl font-bold text-fuchsia-700"> No Councillor Available </div>
                 )
               }
-
-           
-
-            {/* <div className="bg-teal-200 max-w-md h-fit ml-9 my-4 rounded-xl p-5">
-                <img src="../images/3.jpeg" className="rounded-xl w-80 h-64 mx-auto object-cover" />
-                <p id="profname" className=" text-fuchsia-900 text-xl font-bold text-center mt-4">Albert Johnson</p>
-                <p id="professional" className=" text-fuchsia-900 text-lg ml-[130px]">Career Councillor</p>
-                <p id="description" className=" text-gray-500 text-lg text-center mt-4"> Skill improvement, use them systamatically   </p>
-               <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white">Entroll Now </button></div>
-            </div>
-
-            <div className="bg-teal-200 max-w-md h-fit ml-9 my-4 rounded-xl p-5">
-                <img src="../images/3.jpeg" className="rounded-xl w-80 h-64 mx-auto object-cover" />
-                <p id="profname" className=" text-fuchsia-900 text-xl font-bold text-center mt-4">Pooja Bhatia</p>
-                <p id="professional" className=" text-fuchsia-900 text-lg ml-[160px]"> Councillor</p>
-                <p id="description" className=" text-gray-500 text-lg text-center mt-4"> Guid students to improve their empower.         </p>
-               <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white">Entroll Now </button></div>
-            </div> */}
         </div>
         </ML2>
     </div>

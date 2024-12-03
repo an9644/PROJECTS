@@ -108,7 +108,7 @@ userRoute.patch('/useredu',authenticate,async(req,res)=>{
             }
         }
         await existingUser.save()
-        res.status(500).json({message: "User details Addedd Successfully!!" })
+        res.status(200).json({message: "User details Addedd Successfully!!" })
         }else{
             console.log("Invalid Credentail")
         }       

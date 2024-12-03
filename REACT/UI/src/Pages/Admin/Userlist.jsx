@@ -40,21 +40,6 @@ const Userlist = () => {
           alert(errorData.message || 'Error removing dish');
         }
       }
-  
-  // const handleDeleteUser = async (userId) => {
-  //   try {
-  //     const response = await fetch(`http://localhost:8080/deleteuser/name=${userData.name}`, {
-  //       method: 'DELETE',
-  //       headers: {"Content-Type":"application/json"},
-  //       credentials:'include'
-  //     });
-  //     const userData = await response.json();
-  //     console.log('User deleted:', userData);
-  //     // Update the user list
-  //     setUserData(userDatas.filter((user) => user._id !== userId));
-  //   } catch (error) {
-  //     console.error('Error deleting user:', error);
-  //   }
   };
  
 

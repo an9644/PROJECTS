@@ -3,7 +3,6 @@ import { useNavigate  } from 'react-router-dom'
 import Mainlayout from '../layouts/Mainlayout'
 import ML2 from '../layouts/ML2'
 import Settingicons from '../components/User/Settingicons'
-import pic from '../assets/Images/4.jpeg'
 
 
 const Settings = () => { 

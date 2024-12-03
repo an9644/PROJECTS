@@ -4,6 +4,7 @@ import jpeg2 from '../assets/Images/2.jpeg'
 import Navbar1 from '../components/User/Navbar1';
 import Horinav from '../components/User/Horinav';
 import Homeicons from '../components/User/Homeicons';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   const [Podcasts,setPodcasts]=useState([])
@@ -64,7 +65,7 @@ const Home = () => {
                         <div id="description" className=" text-gray-500 text-lg text-center mt-4">{Podcast.description}    
                         <div id="rating" className=" text-gray-500 text-lg text-center mt-4">{Podcast.rating}              </div>
                         </div>
-                    <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white">Entroll Now </button></div>
+                    <div><button className="bg-teal-400 mt-1 ml-36 p-3 rounded-xl hover:bg-teal-800  hover:text-white"><Link to='/booksession'>Entroll Now</Link> </button></div>
                </div>
                 )
                 })):(

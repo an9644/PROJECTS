@@ -23,7 +23,7 @@ const Login = () => {
         if(res.ok){
             const data=await res.json();
             const userType =data;
-             console.log(userType.userType)
+            //  console.log(userType.userType)
 
             if(userType=='admin'){
                 alert("admin Login Successfull")

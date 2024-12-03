@@ -16,11 +16,11 @@ const Education = () => {
         e.preventDefault()
     
         const education ={
-            Degree, FieldStudy,University,GraduationYear
+           Education:{ Degree, FieldStudy,University,GraduationYear}
         }
         try {
           const res= await fetch('http://localhost:8080/useredu',{
-            method:'POST',
+            method:'PATCH',
             headers:{'Content-Type': 'application/json'} ,
             body:JSON.stringify(education),
             credentials:'include'

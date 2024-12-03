@@ -14,14 +14,14 @@ import Jobs from "./Pages/Jobs";
 
 import Mentorship from './Pages/Mentorship';
 import Bookingses from './Pages/Bookingses';
-import Success from './Pages/A.jsx/Success';
+import Success from './Pages/A/Success';
 import Payment from './Pages/Payment';
 import Councillor from './Pages/Councillor';
 
 import Podcast from './Pages/Podcast';
 
 import Settings from './Pages/Settings';
-import Education from './components/User/Education';
+import Education from './Pages/Education';
 import Qualification from './Pages/Qualification';
 
 import Addadmiin from './Pages/Admin/Addadmiin';
@@ -72,7 +72,7 @@ const App = () => {
         <Route path='/addjob' element={<Jobadmin />}/>
         <Route path='/viewjob' element={<ViewJob />}/>
         <Route path='/addcouncil' element={<Councilloradmin/>} />
-        <Route  path='/viewcouncillor' element={<ViewCouncillor/>}/>
+        <Route  path='/viewcouncil' element={<ViewCouncillor/>}/>
         <Route path='/adminprofile' element={<AdminProfile/>}/>
         <Route path='/contactus' element={<Contactas />}/>
 

@@ -14,7 +14,7 @@ import Jobs from "./Pages/Jobs";
 
 import Mentorship from './Pages/Mentorship';
 import Bookingses from './Pages/Bookingses';
-import Success from './Pages/A/Success';
+import Success from './Pages/A.jsx/Success';
 import Payment from './Pages/Payment';
 import Councillor from './Pages/Councillor';
 
@@ -72,7 +72,7 @@ const App = () => {
         <Route path='/addjob' element={<Jobadmin />}/>
         <Route path='/viewjob' element={<ViewJob />}/>
         <Route path='/addcouncil' element={<Councilloradmin/>} />
-        <Route  path='/viewcouncil' element={<ViewCouncillor/>}/>
+        <Route  path='/viewcouncillor' element={<ViewCouncillor/>}/>
         <Route path='/adminprofile' element={<AdminProfile/>}/>
         <Route path='/contactus' element={<Contactas />}/>
 

@@ -15,7 +15,6 @@ const adminRoute = Router();
 const secretkey = process.env.Secretkey
 
 
-
 adminRoute.post('/signup', async (req, res) => {
     try {
         const { Name, UserName, Password  } = req.body 

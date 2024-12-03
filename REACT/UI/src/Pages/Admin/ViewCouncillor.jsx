@@ -23,11 +23,11 @@ const ViewCouncillor = () => {
             console.log(Councillors);   
           }       
          } catch (error) {
-          console.error(error);          
+          console.log('Error:',error);          
         }
       }
       fetchCouncillors();
-    },[])
+    },[])}
     const handleRemoveDish = async () => {
       if (window.confirm('Are you sure you want to remove this dish?')) {
           const res = await fetch("http://localhost:8080/deletecouncillor?CouncilId=councilId", {
@@ -43,23 +43,23 @@ const ViewCouncillor = () => {
             alert(errorData.message || 'Error removing dish');
           }
 
-        }}
+        }
     return (
    <>
     <div className=' bg-[url(./assets/Images/1.png)] fixed bg-cover w-screen h-screen'>
-      <AdminL>  </AdminL>  
+    <div className='fixed'>  <AdminL>  </AdminL>   </div>
    <div className="ml-64 p-4 mt-12">
         <div className="flex justify-between items-center mb-4">
             
         <div className="grid grid-cols-2 gap-5 text-2xl text-fuchsia-800 text-center">
             <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/addcouncil">Add Councillor</Link></button>
-            <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/viewcouncil">View Councillor</Link></button>
+            <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/viewcouncillor">View Councillor</Link></button>
             </div> </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 ">
       {Councillors.length>0?(
               
               Councillors.map((Councillor)=> (
-                  <div className="bg-teal-200 shadow-xl max-w-md h-96 ml-9 my-4 rounded-xl div-5"
+                  <div className="bg-teal-200 shadow-xl max-w-md h-72 ml-9 my-4 rounded-xl div-5"
                     key={Councillor._id} >
                     <img src={bg2} alt='img' className="shadow-xl rounded-full w-32 h-32 mx-auto object-cover" />
                     <div id="profname" className="text-xl font-bold text-center">{Councillor.councilName}</div>
@@ -74,11 +74,10 @@ const ViewCouncillor = () => {
                             <i className="fas fa-star"></i>
                             <i className="fas fa-star"></i>
                         </span><span className="ml-2 text-gray-600">({Councillor.rating}/5)</span>
-                        <div className='ml-24'>
+                    </div>
+                    <div>
             <button onClick={() => handleRemoveDish(userData._id)} className="bg-teal-400 mt-1  p-3 rounded-xl hover:bg-teal-800  hover:text-white"> Delete Councillor </button>
         </div>
-                    </div>
-                   
                 </div>
                 
                 )

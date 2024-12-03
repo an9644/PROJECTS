@@ -23,7 +23,7 @@ const Councilloradmin = () => {
         console.log(res);        
         if(res.ok){
             alert("Councillor added Sucessfully")
-            navigate('/viewcouncil')
+            navigate('/viewjob')
         }else{
             alert("Failed to add Councillor")
         }
@@ -37,7 +37,7 @@ const Councilloradmin = () => {
             
         <div className="grid grid-cols-2 gap-5 text-2xl text-fuchsia-800 text-center">
             <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/addcouncil">Add Councillor</Link></button>
-            <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/viewcouncil">View Councillor</Link></button>
+            <button className="bg-fuchsia-800 text-white hover:bg-fuchsia-900 p-2 rounded-xl shadow shadow-2xl font-medium"> <Link to="/viewcouncillor">View Councillor</Link></button>
             </div>
             
         </div>
@@ -70,9 +70,8 @@ const Councilloradmin = () => {
                     <input type="number" min="0" max="5" id="" className="mt-3 bg-gray-100 w-full p-2 rounded-lg"
                     value={Rating} onChange={(e)=>setRating(e.target.value)} />
                 </div>                           
-                <button type='submit' className="mt-2 bg-fuchsia-600 text-black ml-32 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl">Add </button>
-
                 
+                <button type='submit' className="mt-2 bg-fuchsia-600 text-black ml-32 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl">Add Councillor</button>
             </form>
         </div>
     </div>

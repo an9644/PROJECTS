@@ -17,7 +17,13 @@ const Bookingses = () => {
         e.preventDefault()
     
         const newBooking ={
-          Name, Email, Phn, Mplan, Payment, Description }
+          Name,
+          Email,
+          Phn,
+          Mplan,
+          Payment,
+          Description
+        }
         try {
           const res= await fetch('http://localhost:8080/booksession',{
             method:'POST',
@@ -27,7 +33,7 @@ const Bookingses = () => {
           })
           if(res.ok){
             alert("User Details Added Successfully")
-            navigate('/bksuccess')            
+            navigate('/')            
           }else{
             console.log(' Booking failed')
             navigate('/')

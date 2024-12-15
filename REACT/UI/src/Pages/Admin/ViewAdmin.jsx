@@ -4,7 +4,6 @@ import AdminL from '../../layouts/AdminL';
 const ViewAdmin = () => {
   const [adminDatas, setadminDatas] = useState([]);
 
-  useEffect(() => {
     const fetchAdminData = async () => {
       try {
         const response = await fetch('http://localhost:8080/getalladmin',{
@@ -22,11 +21,12 @@ const ViewAdmin = () => {
         console.error('Error fetching admin data:', error);
       }
     };
+    useEffect(() => {
     fetchAdminData();
   }, []);
-  const handleRemoveadmin = async (id) => {
+  const handleRemoveadmin = async (userName) => {
     if (window.confirm('Are you sure you want to remove this admin?')) {
-        const res = await fetch(`http://localhost:8080/deleteadmin?name=${id}`, {
+        const res = await fetch(`http://localhost:8080/deleteadmin?userName=${userName}`, {
           method: 'DELETE',
           credentials:'include'
         });
@@ -36,7 +36,6 @@ const ViewAdmin = () => {
           fetchAdminData();
         } else {
             alert('error deleting Admin.')
-
         }
       }
 

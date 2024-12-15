@@ -24,7 +24,6 @@ const Qualification = () => {
       console.log(res);        
       if(res.ok){
           alert("Qualification addeedd Sucessfully")
-          navigate('/education')
       }else{
           alert("Failed to add qualification")
           navigate('/qualification')

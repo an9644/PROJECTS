@@ -18,14 +18,15 @@ const Qualification = () => {
       const res= await fetch("http://localhost:8080/userqualification",{
           method:'PATCH',
           headers: {"Content-Type":"application/json"},
-          body:JSON.stringify(newuser)
+          body:JSON.stringify(newuser),
+          credentials:'include'
       })
       console.log(res);        
       if(res.ok){
           alert("Qualification addeedd Sucessfully")
-          navigate('/home')
       }else{
           alert("Failed to add qualification")
+          navigate('/qualification')
       }
   }
   return (

@@ -26,8 +26,7 @@ const Education = () => {
             credentials:'include'
           })
           if(res.ok){
-            alert("data added successfully")
-            navigate('/home')            
+            alert("data added successfully")            
           }else{
             console.log(' Data Adding  failed')
             navigate('/education')

@@ -37,6 +37,8 @@ import ViewPodcat from './Pages/Admin/ViewPodcat';
 import ViewCouncillor from './Pages/Admin/ViewCouncillor';
 import AdminProfile from './Pages/Admin/AdminProfile';
 import Contactas from './Pages/Contactas';
+import UserProfile from './Pages/UserProfile';
+import Updateadmin from './Pages/Admin/Updateadmin';
 
 
 
@@ -59,6 +61,7 @@ const App = () => {
         {/* Podcast */}
         <Route path='/podcast' element={<Podcast />} />
         {/* Settings  */}
+        <Route path='/userprofile' element={<UserProfile/>}/>
         <Route path='/settings' element={<Settings />} />
         <Route path='/education' element={<Education />} />
         <Route path='/qualification' element={<Qualification />}/>
@@ -73,14 +76,9 @@ const App = () => {
         <Route path='/viewjob' element={<ViewJob />}/>
         <Route path='/addcouncil' element={<Councilloradmin/>} />
         <Route  path='/viewcouncil' element={<ViewCouncillor/>}/>
-        <Route path='/adminprofile' element={<AdminProfile/>}/>
+        <Route path='/admindetails' element={<AdminProfile/>}/>
+        <Route path='/adminprofile' element={<Updateadmin/>}/>
         <Route path='/contactus' element={<Contactas />}/>
-
-
-
-
-
-
         </>
         
     ))   

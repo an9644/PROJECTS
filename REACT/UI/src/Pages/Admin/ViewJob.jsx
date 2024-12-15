@@ -7,7 +7,6 @@ import bg2 from '../../assets/Images/2.jpeg'
 const ViewJob = () => {
     const [Jobs,setJobs]=useState([])
 
-  useEffect(()=>{
     const fetchJobs = async () => {
       try {
         const response= await fetch('http://localhost:8080/getalljobs',{
@@ -28,8 +27,29 @@ const ViewJob = () => {
         console.error(error);        
       }
     }
+    useEffect(()=>{
     fetchJobs();
   },[])
+  const handleRemoveuser = async (JobId) => {
+
+    if (window.confirm('Are you sure you want to remove this Job?')) {
+      try {
+        const res = await fetch(`http://localhost:8080/deletejob?JobId=${JobId}`, {
+          method: 'DELETE',
+          credentials:'include'
+        });
+        if (res.ok) {
+          alert('Job removed successfully');
+          fetchJobs();          
+        } else {
+          const errorData = await res.json();
+          alert(errorData.message || 'Error removing dish');
+        }
+      }catch (error) {
+        console.error(error);
+      }}
+  };
+ 
   return (
     <>
         <div className=' bg-[url(./assets/Images/1.png)] fixed w-screen bg-cover h-screen'>
@@ -69,12 +89,12 @@ const ViewJob = () => {
                               <br /><p className="ml-8 mt-3">{Job.salarayrange} </p>
                           </div> 
                           <div className='ml-36'>
-            <button onClick={() => handleRemoveuser(userData._id)} className="bg-teal-400 mt-1  p-3 rounded-xl hover:bg-teal-800  hover:text-white"> Delete User </button>
+            <button onClick={() => handleRemoveuser(Job._id)} className="bg-teal-400 mt-1  p-3 rounded-xl hover:bg-teal-800  hover:text-white"> Delete User </button>
         </div>                  
                       </div>
                 )
                 )):(
-                  <div className="text-center text-3xl font-bold text-fuchsia-700"> No Podcast Available </div>
+                  <div className="text-center text-3xl font-bold text-fuchsia-700"> No Job Available </div>
                 )
               }              
           </div>

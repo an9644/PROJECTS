@@ -4,7 +4,6 @@ import AdminL from '../../layouts/AdminL';
 const Userlist = () => {
   const [userDatas, setUserData] = useState([]);
 
-  useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await fetch('http://localhost:8080/getallusers',{
@@ -22,24 +21,28 @@ const Userlist = () => {
         console.error('Error fetching user data:', error);
       }
     };
+    useEffect(() => {
+
     fetchUserData();
   }, []);
-  const handleRemoveuser = async (id) => {
-    if (window.confirm('Are you sure you want to remove this User?')) {
-      // try {
-        const res = await fetch(`http://localhost:8080/name=${id}`, {
-          method: 'DELETE',
-          //credentials:'include'
-        });
+  const handleRemoveuser = async (userName) => {
 
+    if (window.confirm('Are you sure you want to remove this User?')) {
+      try {
+        const res = await fetch(`http://localhost:8080/deleteuser?userName=${userName}`, {
+          method: 'DELETE',
+          credentials:'include'
+        });
         if (res.ok) {
-          alert('Dish removed successfully');
-          fetchUserData();
+          alert('User removed successfully');
+          fetchUserData();          
         } else {
           const errorData = await res.json();
           alert(errorData.message || 'Error removing dish');
         }
-      }
+      }catch (error) {
+        console.error(error);
+      }}
   };
  
 

@@ -8,7 +8,6 @@ const DNavbar = () => {
       const Username=localStorage.getItem('userType')
       console.log(Username)
 
-
   return (
     <>
         <ul>
@@ -18,7 +17,7 @@ const DNavbar = () => {
             </div></li>
             <li className="ml-4"> <div className="flex  ">
                 <img className=" rounded-full border border-7 " src={bg}   width="60" height="60" />
-                        <p className="m-3"><b><Link to={'/adminprofile'}>Admin Profile</Link></b> </p>
+                        <p className="m-3"><b><Link to={'/admindetails'}>{Username}</Link></b> </p>
                 </div></li>
                 <li className="py-2 text-fuchsia-800"><Link to="/addadmin" className="text-xl font-medium text-gray-700">Add Admin</Link></li>
             <li className="py-2 text-fuchsia-800"><Link to="/dashboard" className="text-xl font-medium text-gray-700">Dashboard</Link></li>

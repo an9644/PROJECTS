@@ -11,7 +11,7 @@ const Settingicons = () => {
         </div>
         <hr className="border-t-2 border-purple-700 w-full" />    
         <div className="flex flex-col gap-5 mt-4">
-            <button className="text-fuchsia-700"><Link to="/settings"> Profile Management</Link></button>
+            <button className="text-fuchsia-700"><Link to="/userprofile"> Profile </Link></button>
             <button className="text-fuchsia-700"><Link to="/education">Education </Link></button>
             <button className="text-fuchsia-700"><Link to="/qualification"> Qualification</Link></button>
             <button className="text-fuchsia-700"><Link to="/contactus">Contact Us</Link></button>

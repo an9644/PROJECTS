@@ -57,11 +57,7 @@ const Addadmiin = () => {
                     <input type="password" id="password" className="mt-3 bg-gray-100 w-full p-2 rounded-lg" required 
                     value={Password} onChange={(e)=>setPassword(e.target.value)}/>
                 </div>
-                {/* <div className="mb-4">images
-                    <label className=" text-gray-600" htmlFor="username">Username :</label>
-                    <input type="text" id="username"  className="mt-3 bg-gray-100 w-full p-2 rounded-lg" required 
-                    value={Username} onChange={(e)=>setUsername(e.target.value)}/>
-                </div>                          */}
+                
                 
                 <button type="submit"  className="mt-2 bg-fuchsia-600 text-black ml-44 border border-gray-900	hover:bg-fuchsia-700 hover:border border-gray-200 text-white font-bold py-2 px-4 rounded-xl"> Add Admin</button>
             </form>

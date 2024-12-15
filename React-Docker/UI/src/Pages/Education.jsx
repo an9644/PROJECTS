@@ -1,7 +1,7 @@
 import React,{useState} from 'react'
-import Mainlayout from '../../layouts/Mainlayout'
-import ML2 from '../../layouts/ML2'
-import Settingicons from './Settingicons'
+import Mainlayout from '../layouts/Mainlayout'
+import ML2 from '../layouts/ML2'
+import Settingicons from '../components/User/Settingicons'
 import { useNavigate } from 'react-router-dom'
 
 const Education = () => {
@@ -26,8 +26,7 @@ const Education = () => {
             credentials:'include'
           })
           if(res.ok){
-            alert("data added successfullt")
-            navigate('/qualification')            
+            alert("data added successfully")            
           }else{
             console.log(' Data Adding  failed')
             navigate('/education')

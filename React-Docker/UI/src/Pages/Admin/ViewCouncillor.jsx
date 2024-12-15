@@ -6,7 +6,6 @@ import bg2 from '../../assets/Images/2.jpeg'
 const ViewCouncillor = () => {
     const [Councillors,setCouncillor]=useState([])
 
-    useEffect(()=>{
       const fetchCouncillors= async ()=>{
         try {
           const response=await fetch('http://localhost:8080/getallcouncillors',{
@@ -26,21 +25,22 @@ const ViewCouncillor = () => {
           console.error(error);          
         }
       }
+      useEffect(()=>{
       fetchCouncillors();
     },[])
-    const handleRemoveDish = async () => {
-      if (window.confirm('Are you sure you want to remove this dish?')) {
-          const res = await fetch("http://localhost:8080/deletecouncillor?CouncilId=councilId", {
+    const handleRemoveDish = async (councilId) => {
+      if (window.confirm('Are you sure you want to remove this Councillor?')) {
+          const res = await fetch(`http://localhost:8080/deletecouncillor?councilId=${councilId}`, {
             method: 'DELETE',
-            //credentials:'include'
+            credentials:'include'
           });
   
           if (res.ok) {
-            alert('Dish removed successfully');
-            navigate('/home'); // Redirect to courses page
+            alert('Councillor removed successfully');
+            fetchCouncillors();
           } else {
             const errorData = await res.json();
-            alert(errorData.message || 'Error removing dish');
+            alert(errorData.message || 'Error removing Councillor');
           }
 
         }}
@@ -75,7 +75,7 @@ const ViewCouncillor = () => {
                             <i className="fas fa-star"></i>
                         </span><span className="ml-2 text-gray-600">({Councillor.rating}/5)</span>
                         <div className='ml-24'>
-            <button onClick={() => handleRemoveDish(userData._id)} className="bg-teal-400 mt-1  p-3 rounded-xl hover:bg-teal-800  hover:text-white"> Delete Councillor </button>
+            <button onClick={() => handleRemoveDish(Councillor._id)} className="bg-teal-400 mt-1  p-3 rounded-xl hover:bg-teal-800  hover:text-white"> Delete Councillor </button>
         </div>
                     </div>
                    

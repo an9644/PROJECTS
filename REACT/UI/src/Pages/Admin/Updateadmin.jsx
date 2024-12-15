@@ -1,11 +1,8 @@
 import React,{useState,useEffect} from 'react'
-import { useNavigate  } from 'react-router-dom'
-import Mainlayout from '../layouts/Mainlayout'
-import ML2 from '../layouts/ML2'
-import Settingicons from '../components/User/Settingicons'
+import { useNavigate } from 'react-router-dom'
+import AdminL from '../../layouts/AdminL'
 
-
-const Settings = () => { 
+const AdminProfile = () => {
     const [Name,setName]=useState('')
     const [UserName,setUserName]=useState('')
     const [Email,setEmail]=useState('')
@@ -17,21 +14,42 @@ const Settings = () => {
     const [Country,setCountry]=useState('')
     const navigate =useNavigate()
 
-    useEffect(()=>{
-      const fetchAdmin=async (userName)=>{
-        try {
-          const res=await fetch(`http://localhost:8080/getadmin?userName=${userName}`);
-          const data = await res.json();
-          setCourse(data);
-        } catch (error) {
-          console.log("error fetching courses:",error);       
-      }finally{
-        // setLoading(false)
-        alert("error")
-      };
-    };
-    fetchAdmin();
-        },[_id] );
+
+    useEffect(() => {
+      const loggedinUser = localStorage.getItem('username');
+      const fetchAdminData = async () => {
+          try {
+                if (loggedinUser) {
+                  const res = await fetch(`http://localhost:8080/getadmin?userName=${loggedinUser}`, {
+                    method:'GET',
+                      credentials: 'include',
+                      headers: { "Content-Type": "application/json" }
+                  })
+                  const data = await res.json()
+                  console.log(data);                  
+                  if (data) { // Add a check to ensure data is not undefined
+                      setName(data.Name || '')
+                      setUserName(data.UserName || '')
+                      setEmail(data.Email || '')
+                      setPhn(data.Phn || '')
+                      setAddress(data.Address?.address || '')
+                      setCity(data.Address?.city || '')
+                      setState(data.Address?.state || '')
+                      setPincode(data.Address?.pincode || '')
+                      setCountry(data.Address?.country || '')
+                  } else {
+                      console.log('No admin data found')
+                  }
+                  
+                }else{
+                  console.log("sorry");                  
+                }
+          } catch (error) {
+              console.log('Error fetching admin data:', error)
+          }
+      }
+      fetchAdminData()
+  }, [])
 
     const submitForm=async (e)=>{
         e.preventDefault()
@@ -41,36 +59,34 @@ const Settings = () => {
           Address:{address,City,State,Pincode,Country}
         }
         try {
-          const res= await fetch('http://localhost:8080/userinfo',{
+          const res= await fetch('http://localhost:8080/admininfo',{
             method:'PATCH',
             headers:{'Content-Type': 'application/json'} ,
             body:JSON.stringify(newBooking),
             credentials:'include'
           })
           if(res.ok){
-            navigate('/qualification')            
+            alert("data updated succesfully")
+            navigate('/admindetails')            
           }else{
             console.log(' Data Adding  failed')
-            navigate('/home')
+            navigate('/adminprofile')
           }
         } catch (error) {
           console.log('Error : faild');
           
         }
-      }
-
-
+    }
+    
   return (
     <>
-    <Mainlayout>
-    <div className="bg-transparent fixed  backdrop-blur-sm h-screen w-44 ml-28 rounded-xl m-2 ">
-    <Settingicons />     </div>
+   <div className="bg-[url(./assets/Images/1.png)] fixed bg-cover w-screen h-screen">
+   <AdminL></AdminL>
     <div className="bg-transparent fixed ml-80  backdrop-blur-sm h-screen w-[1450px] mt-2 rounded-xl">
-            <ML2>
-            <div  className="bg-teal-100 ml-72 w-[680px] h-auto mt-4 rounded-xl shadow-lg">
+            <div  className="bg-green-100 ml-72 w-[680px] h-auto mt-4 p-4 rounded-xl shadow-lg">
                 <form onSubmit={submitForm}>
-                <div className="text-2xl ml-64 text-fuchsia-800 pt-4 font-bold "> My Profile </div>
-                <div className=" ml-4">
+                 <div className="text-2xl ml-64 text-fuchsia-800 pt-4 font-bold "> Admin  Profile </div>
+                      <div className=" ml-4">
                 <div className="ml-9">
                     <label className="text-fuchsia-800" htmlFor=""> Name :</label> <br/>
                     <input type="text" className="mt-2 bg-gray-100 w-[565px] border-2 p-2 rounded-xl" name="" id="username" required placeholder="Enter Name " 
@@ -129,12 +145,10 @@ const Settings = () => {
                 </div>
                 </form></div>
 
-            </ML2>
             </div>
-    </Mainlayout>
-    
+    </div> 
     </>
   )
 }
 
-export default Settings
+export default AdminProfile;

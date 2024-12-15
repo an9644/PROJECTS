@@ -6,7 +6,6 @@ import bg2 from '../../assets/Images/2.jpeg'
 const ViewPodcat = () => {
   const [Podcasts,setPodcast]=useState([])
 
-  useEffect(()=>{
     const fetchPodcast = async () => {
       try {
         const response= await fetch('http://localhost:8080/getallpodcast',{
@@ -27,8 +26,28 @@ const ViewPodcat = () => {
         console.error(error);        
       }
     }
-    fetchPodcast();
+    useEffect(()=>{
+fetchPodcast();
   },[])
+  const handleRemoveuser = async (PodcastId) => {
+
+    if (window.confirm('Are you sure you want to remove this Podcast?')) {
+      try {
+        const res = await fetch(`http://localhost:8080/deletepodcast?PodcastId=${PodcastId}`, {
+          method: 'DELETE',
+          credentials:'include'
+        });
+        if (res.ok) {
+          alert('Podcast removed successfully');
+          fetchPodcast();          
+        } else {
+          const errorData = await res.json();
+          alert(errorData.message || 'Error removing Podcast');
+        }
+      }catch (error) {
+        console.error(error);
+      }}
+  };
   return (
     <>
         <div className=' bg-[url(./assets/Images/1.png)] fixed w-screen bg-cover h-screen'>

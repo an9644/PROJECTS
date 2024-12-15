@@ -23,7 +23,7 @@ const Login = () => {
         if(res.ok){
             const data=await res.json();
             const userType =data;
-             console.log(userType.userType)
+            localStorage.setItem('username', UserName);
 
             if(userType=='admin'){
                 alert("admin Login Successfull")

@@ -67,7 +67,10 @@ adminRoute.post('/login', async (req, res) => {//callbak function
 })
 //---------------------------------------------------------------------
 adminRoute.post('/addadmin', async (req, res) => {
-    try {       
+    
+        try {       
+            if(req.userType=='admin'){
+                console.log("Admin login successfull");
             const {Name, UserName, Password } = req.body
 
             const existingadmin = await Admin.findOne({ userName: UserName })
@@ -87,41 +90,22 @@ adminRoute.post('/addadmin', async (req, res) => {
                 console.log("Admin Addedd Successfully!!")
                 return res.status(201).json({ message: "Admin Addedd Successfully!!" })
             }          
-       
+        }else{
+            console.log("unauthorized access");            
+        }
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: "Internal Server Error" })
     }
+    
 })
-
-
-
-//-----------------------------------------------------------------------
-
-adminRoute.get('/getuser', async (req, res) => {
-    try {
-        
-        const result = await User.find();
-        if (result) {
-            res.status(200).send(result)
-        }
-        else {
-            res.status(400).json({ message: 'there is no user ' })
-            // console.log("No such course")
-        }
-
-    } catch (error) {
-        res.status(500).json({ message: 'Internal server error' })
-    }
-})
-
 
 //---------------------------------------------------------------------------
 //adding councillor
 adminRoute.post('/addcouncillor', async (req, res) => {
 
     try {
-       
+        if(req.userType='admin'){
             const { CouncilName, CouncilId, Occupation, Description, Rating } = req.body
 
             const existingCouncil = await Councillor.findOne({ councilId: CouncilId })
@@ -144,6 +128,10 @@ adminRoute.post('/addcouncillor', async (req, res) => {
             console.log("Councillor Addedd Successfully!!")
             return res.status(201).json({ message: "Councillor Addedd Successfully!!" })
        
+        }else{
+            console.log("unauthorized access");            
+        }
+            
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: "Internal Server Error" })
@@ -153,9 +141,8 @@ adminRoute.post('/addcouncillor', async (req, res) => {
 //adding jobs
 
 adminRoute.post('/addjob', async (req, res) => {
-    try {
-        
-
+    try {        
+        if(req.userType='admin'){
             const { JobName, JobId, Description, Rating,SalaryRange } = req.body
 
             const existingjob = await Job.findOne({ jobId: JobId })
@@ -176,6 +163,11 @@ adminRoute.post('/addjob', async (req, res) => {
             await newjob.save()
             console.log("Job Addedd Successfully!!")
             return res.status(201).json({ message: "Job Addedd Successfully!!" })
+
+        }else{
+            console.log("unauthorized access");            
+        }
+
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: "Internal Server Error" })
@@ -185,8 +177,7 @@ adminRoute.post('/addjob', async (req, res) => {
 //add Poscast
 adminRoute.post('/addpodcast',async (req, res) => {
     try {
-        
-
+        if(req.userType='admin'){
             const { PodcastName, CounciltName, PodcastId, Description, Rating } = req.body
 
             const existingpodcast = await Podcast.findOne({ podcastId: PodcastId })
@@ -194,7 +185,6 @@ adminRoute.post('/addpodcast',async (req, res) => {
                 console.log("Podcast Already Exist!!")
                 return res.status(400).json({ message: "Podcast Already Exist!!" })
             }
-
             //creating new course
             const newPodcast = new Podcast({
                 podcastName: PodcastName,
@@ -203,11 +193,13 @@ adminRoute.post('/addpodcast',async (req, res) => {
                 description: Description,
                 rating: Rating
             })
-
             //save course  to mongo
             await newPodcast.save()
             console.log("Podcast Addedd Successfully!!")
             return res.status(201).json({ message: "Podcast Addedd Successfully!!" })
+        }else{
+            console.log("unauthorized access");            
+        }
     } catch (error) {
         console.error(error.message);
         res.status(500).json({ message: "Internal Server Error" })
@@ -215,12 +207,12 @@ adminRoute.post('/addpodcast',async (req, res) => {
 })
 //-----------------------------------------------------------------------
 //removing councillor
-adminRoute.delete('/deletecouncillor', async (req, res) => {
+adminRoute.delete('/deletecouncillor',authenticate, async (req, res) => {
     try {
         if (req.userType == 'admin') {
             console.log("Admin login success")
             const result = req.query.councilId
-            const councillor = await Councillor.deleteOne(result)
+            const councillor = await Councillor.deleteOne({_id:result})
 
             if (councillor) {
                 console.log("Councillor removed")
@@ -243,19 +235,19 @@ adminRoute.delete('/deletepodcast', authenticate, async (req, res) => {
     try {
         if (req.userType == 'admin') {
             console.log("Admin login success")
-            const result = req.query.podcastId
-            const podcast = await Podcast.deleteOne(result)
+            const result = req.query.PodcastId
+            const podcast = await Podcast.deleteOne({_id:result})
 
             if (podcast) {
                 console.log("Podcast removed")
                 return res.status(200).json({ meassage: "Podcast removed" })
             } else {
                 console.log("no item found");
-                return res.status(200).json({ meassage: "no item found" })
+                return res.status(404).json({ meassage: "no item found" })
             }
         } else {
-            console.log("You dont have permission to add Podcast ")
-            return res.status(403).json({ message: "You don't have permission to add Post" });
+            console.log("You dont have permission to remove Podcast ")
+            return res.status(403).json({ message: "You don't have permission to remove Post" });
         }
     } catch (error) {
         console.error(error.message);
@@ -265,23 +257,22 @@ adminRoute.delete('/deletepodcast', authenticate, async (req, res) => {
 //removing job
 adminRoute.delete('/deletejob', authenticate, async (req, res) => {
     try {
-
         if (req.userType == 'admin') {
             console.log("Admin login success")
-            const result = req.query.jobIdId
-            const job = await Job.deleteOne(result)
+            const result = req.query.JobId
+            const job = await Job.deleteOne({_id:result})
 
-            if (job) {
+            if(job){
                 console.log("Job removed")
                 return res.status(200).json({ meassage: "Job removed" })
             } else {
                 console.log("no item found");
-                return res.status(200).json({ meassage: "no item found" })
+                return res.status(404).json({ meassage: "no item found" })
             }
 
         } else {
-            console.log("You dont have permission to add Podcast ")
-            return res.status(403).json({ message: "You don't have permission to add Post" });
+            console.log("You dont have permission to remove job ")
+            return res.status(403).json({ message: "You don't have permission to remove job" });
         }
 
     } catch (error) {
@@ -321,6 +312,45 @@ adminRoute.get('/getjob', async (req, res) => {
             res.status(400).json({ message: 'No such Job' })
         }
 
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' })
+    }
+})
+//-----------------------------------------------------------------------
+
+adminRoute.get('/getuser', async (req, res) => {
+    try {
+        const search=req.query.userName
+        if (!search) {
+            return res.status(400).json({ message: 'Username is required' });
+          }
+      
+        const result = await User.find({userName:search});
+        if (result) {
+            res.status(200).send(result)
+        }
+        else {
+            res.status(400).json({ message: ' user not found ' })
+        }
+    
+    } catch (error) {
+        res.status(500).json({ message: 'Internal server error' })
+    }
+})
+//--------------------------------------------------------------------
+adminRoute.get('/getadmin', async (req, res) => {
+    try {
+        const search=req.query.userName
+        if (!search) {
+            return res.status(400).json({ message: 'Username is required' });
+          }      
+        const result = await Admin.find({userName:search});
+        if (result) {
+            res.status(200).send(result)
+        }
+        else {
+            res.status(400).json({ message: ' admin not found ' })
+        }
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
@@ -391,6 +421,7 @@ adminRoute.get('/getalljobs', async (req, res) => {
 //------------------------------------------------------------
 adminRoute.get('/getallusers', async (req, res) => {
     try {
+        if (req.userType == 'admin') {
         const result = await User.find()
         if (result) {
             res.status(200).json(result);
@@ -398,7 +429,9 @@ adminRoute.get('/getallusers', async (req, res) => {
             res.status(404).json({ message: 'No User found' }); 
             console.log(error);            
           }
-
+        }else{
+            console.log("unauthorized access");            
+        }
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
@@ -406,6 +439,7 @@ adminRoute.get('/getallusers', async (req, res) => {
 //-----------------------------------------------------------
 adminRoute.get('/getalladmin', async (req, res) => {
     try {
+        if (req.userType == 'admin') {
         const result = await Admin.find()
         if (result) {
             res.status(200).json(result);
@@ -413,45 +447,62 @@ adminRoute.get('/getalladmin', async (req, res) => {
             res.status(404).json({ message: 'No Admin found' }); 
             console.log(error);            
           }
-
+        }else{
+            console.log("unauthorized access");            
+        }
     } catch (error) {
         res.status(500).json({ message: 'Internal server error' })
     }
 })
 //------------------------------------------------------------
 //delete user
-adminRoute.delete('/deleteuser', async (req, res) => {
+adminRoute.delete('/deleteuser',authenticate, async (req, res) => {
     try {
-        const { name } = req.query;
+        if (req.userType == 'admin') {
+            console.log("Admin login success")
+            const result = req.query.userName
+            const deluser = await User.deleteOne({_id:result})
 
-        const deletedName = await User.deleteOne({ name });
-        if (!deletedName) {
-            return res.status(404).send("User not found.");
+            if (deluser) {
+                console.log("User removed")
+                return res.status(200).json({ meassage: "User removed" })
+            } else {
+                console.log("no item found");
+                return res.status(404).json({ meassage: "no item found" })
+            }
+        } else {
+            console.log("You dont have permission  ")
+            return res.status(403).json({ message: "You don't have permission " });
         }
 
-        console.log(`User deleted successfully`);
-        res.status(200).send(`User  deleted successfully`);
     } catch (error) {
-        console.error("Error deleting Admin:", error);
-        res.status(500).send("Server error. Please try again later.");
+        console.log(error.message);
+        return res.status(500).json({ meassage: "Internal server Error" })
     }
 });
 //-----------------------------------------------------------------------
-adminRoute.delete('/deleteadmin', async (req, res) => {
+adminRoute.delete('/deleteadmin',authenticate, async (req, res) => {
     try {
-        const search = req.query.id;
-        const deletedName = await Admin.deleteOne({ _id:search });
-        if (deletedName) {
-            console.log(`Admin deleted successfully`);
-           return res.status(200).send(`Admin  deleted successfully`);
-        }else{
-            return res.status(404).send("admin not found.");
+        if (req.userType == 'admin') {
+            console.log("Admin login success")
+            const result = req.query.userName
+            const deladmin = await Admin.deleteOne({_id:result})
+
+            if (deladmin) {
+                console.log("Admin removed")
+                return res.status(200).json({ meassage: "Admin removed" })
+            } else {
+                console.log("no item found");
+                return res.status(404).json({ meassage: "no item found" })
+            }
+        } else {
+            console.log("You dont have permission  ")
+            return res.status(403).json({ message: "You don't have permission " });
         }
 
-     
     } catch (error) {
-        console.error("Error deleting Admin:", error);
-        res.status(500).send("Server error. Please try again later.");
+        console.log(error.message);
+        return res.status(500).json({ meassage: "Internal server Error" })
     }
 });
 //-----------------------------------------------------------------
@@ -471,9 +522,9 @@ adminRoute.get('/logout', authenticate, (req, res) => {
 });
 //-----------------------------------------------------------------
 adminRoute.patch('/admininfo',async(req,res)=>{    
-    try{
-        
-            
+    try{        
+        if (req.userType == 'admin') {
+            console.log("Admin login success")            
         const {Name,UserName,Email,Phn,Address}=req.body                     
 
         const existingUser= await Admin.findOne({userName : UserName})                        
@@ -497,6 +548,10 @@ adminRoute.patch('/admininfo',async(req,res)=>{
             await existingUser.save()
             console.log("User details Addedd Successfully!!")
              return res.status(201).json({message:"User Details Addedd Successfully!!"})         }                                
+            } else {
+                console.log("You dont have permission  ")
+                return res.status(403).json({ message: "You don't have permission " });
+            }
     }catch(error){
         console.error(error.message);
         res.status(500).json({message: "Internal Server Error" })

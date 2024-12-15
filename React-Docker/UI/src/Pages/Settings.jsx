@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { useNavigate  } from 'react-router-dom'
 import Mainlayout from '../layouts/Mainlayout'
 import ML2 from '../layouts/ML2'
@@ -10,19 +10,35 @@ const Settings = () => {
     const [UserName,setUserName]=useState('')
     const [Email,setEmail]=useState('')
     const [Phn,setPhn]=useState('')
-    const [Address,setAddress]=useState('')
+    const [address,setAddress]=useState('')
     const [City,setCity]=useState('')
     const [State,setState]=useState('')
     const [Pincode,setPincode]=useState('')
     const [Country,setCountry]=useState('')
     const navigate =useNavigate()
 
+    useEffect(()=>{
+      const fetchAdmin=async (userName)=>{
+        try {
+          const res=await fetch(`http://localhost:8080/getadmin?userName=${userName}`);
+          const data = await res.json();
+          setCourse(data);
+        } catch (error) {
+          console.log("error fetching courses:",error);       
+      }finally{
+        // setLoading(false)
+        alert("error")
+      };
+    };
+    fetchAdmin();
+        },[_id] );
+
     const submitForm=async (e)=>{
         e.preventDefault()
     
         const newBooking ={
           Name, Email,Phn, UserName,
-          Address:{Address:Address,City,State,Pincode,Country}
+          Address:{address,City,State,Pincode,Country}
         }
         try {
           const res= await fetch('http://localhost:8080/userinfo',{
@@ -32,7 +48,7 @@ const Settings = () => {
             credentials:'include'
           })
           if(res.ok){
-            navigate('/education')            
+            navigate('/qualification')            
           }else{
             console.log(' Data Adding  failed')
             navigate('/home')
@@ -80,7 +96,7 @@ const Settings = () => {
                 <div className="mb-4 ml-9 mt-3">
                     <label className="block text-fuchsia-800" htmlFor="address" > Address:</label>
                     <textarea className="w-[565px] h-32 bg-gray-100 border-2 mt-2  p-2 rounded-xl"  id="address" placeholder="Enter your address..."
-                    value={Address} onChange={(e)=>setAddress(e.target.value)}></textarea>   
+                    value={address} onChange={(e)=>setAddress(e.target.value)}></textarea>   
                 </div>
                 <div className="grid grid-cols-2 gap-2  mt-2">
                     <div className="ml-9">
